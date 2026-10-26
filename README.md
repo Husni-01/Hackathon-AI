@@ -1,4 +1,4 @@
-# 🚀 Hackathon AI
+# Hackathon AI
 
 > An advanced, high-performance platform engineered to accelerate hackathon prototyping, automated code generation, and competitive programming solutions. Powered by modern web architectures (**React** & **Node.js/Python**) and grounded in rigorous algorithmic theory from the *Competitive Programmer's Handbook*.
 
