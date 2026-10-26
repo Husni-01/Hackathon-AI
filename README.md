@@ -1,6 +1,6 @@
 # 🚀 Hackathon AI
 
-> An advanced, high-performance platform engineered to accelerate hackathon prototyping, automated code generation, and competitive programming solutions. Powered by modern web architectures (**React** & **Node.js/Python**) and grounded in rigorous algorithmic theory from the *Competitive Programmer's Handbook*[cite: 5].
+> An advanced, high-performance platform engineered to accelerate hackathon prototyping, automated code generation, and competitive programming solutions. Powered by modern web architectures (**React** & **Node.js/Python**) and grounded in rigorous algorithmic theory from the *Competitive Programmer's Handbook*.
 
 ---
 
@@ -24,17 +24,17 @@
 
 **Hackathon AI** is built for high-pressure development environments like hackathons and coding competitions. It combines a seamless, reactive user interface with a heavy-duty backend capable of parsing complex codebases, executing search algorithms (such as Monte Carlo Tree Search), and evaluating execution sandboxes. 
 
-By integrating core principles of algorithm design and efficiency, Hackathon AI ensures that generated solutions are both functionally correct and optimized to pass strict execution time limits[cite: 15, 30].
+By integrating core principles of algorithm design and efficiency, Hackathon AI ensures that generated solutions are both functionally correct and optimized to pass strict execution time limits.
 
 ---
 
 ## 📚 Theoretical Foundation
 
-Hackathon AI's core computational engines are deeply influenced and powered by the methodologies outlined in the *Competitive Programmer's Handbook* by Antti Laaksonen[cite: 5]:
-*   **Time Complexity Estimation:** Algorithms and generated patches are evaluated against strict scale parameters (e.g., handling $N = 10^5$ inputs within standard 1-second execution boundaries)[cite: 21, 30].
-*   **Dynamic Programming:** Implements memoization and iterative state evaluation patterns derived from Chapter 7 to solve overlapping subproblems efficiently[cite: 65, 81].
-*   **Graph Algorithms & Traversals:** Utilizes advanced graph representation, DFS/BFS, and shortest-path heuristics (such as Dijkstra's and Bellman-Ford algorithms) from Chapters 11–13[cite: 109, 117, 123].
-*   **Complete Search & Pruning:** Incorporates backtracking and search tree pruning techniques to explore solution spaces effectively[cite: 50, 51].
+Hackathon AI's core computational engines are deeply influenced and powered by the methodologies outlined in the *Competitive Programmer's Handbook* by Antti Laaksonen.
+*   **Time Complexity Estimation:** Algorithms and generated patches are evaluated against strict scale parameters (e.g., handling $N = 10^5$ inputs within standard 1-second execution boundaries)
+*   **Dynamic Programming:** Implements memoization and iterative state evaluation patterns derived from Chapter 7 to solve overlapping subproblems efficiently
+*   **Graph Algorithms & Traversals:** Utilizes advanced graph representation, DFS/BFS, and shortest-path heuristics (such as Dijkstra's and Bellman-Ford algorithms) from Chapters 11–13.
+*   **Complete Search & Pruning:** Incorporates backtracking and search tree pruning techniques to explore solution spaces effectively.
 
 ---
 
@@ -71,7 +71,7 @@ Hackathon AI/
 │   └── solve_file.py     # Automated problem solver module
 ├── frontend/             # Dedicated frontend components and assets
 ├── public/               # Static public assets (images, icons)
-├── Hackathon book.PDF    # Core reference handbook for algorithmic patterns[cite: 5]
+├── Hackathon book.PDF    # Core reference handbook for algorithmic patterns
 ├── package.json          # Node.js dependencies and project metadata
 ├── next.config.ts        # Next.js framework configuration
 ├── tsconfig.json         # TypeScript compiler configuration
