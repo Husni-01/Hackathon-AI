@@ -1,17 +1,26 @@
 import ast
 import re
+import hashlib
 
 def extract_clean_code(raw_llm_output: str, language: str) -> str:
-    # Try to extract from markdown code blocks
-    pattern = re.compile(r"```(?:" + re.escape(language) + r")?\n(.*?)\n```", re.DOTALL)
+    """
+    Extracts executable code from LLM responses, stripping Markdown code fences.
+    Falls back to raw output if fences are absent. Validates Python AST if applicable.
+    """
+    pattern = re.compile(r"```(?:" + re.escape(language) + r")?[\r\n]+(.*?)[\r\n]+```", re.DOTALL | re.IGNORECASE)
     match = pattern.search(raw_llm_output)
     if match:
         code = match.group(1).strip()
     else:
-        # Fallback to pure string
-        code = raw_llm_output.strip()
+        # Check if generic code block is present
+        gen_pattern = re.compile(r"```\w*[\r\n]+(.*?)[\r\n]+```", re.DOTALL)
+        gen_match = gen_pattern.search(raw_llm_output)
+        if gen_match:
+            code = gen_match.group(1).strip()
+        else:
+            code = raw_llm_output.strip()
 
-    if language == "python":
+    if language.lower() in ("python", "py"):
         try:
             ast.parse(code)
         except SyntaxError as e:
@@ -19,18 +28,42 @@ def extract_clean_code(raw_llm_output: str, language: str) -> str:
 
     return code
 
-def truncate_error_trace(error_msg: str, max_chars: int = 500) -> str:
+
+def truncate_error_trace(error_msg: str, max_chars: int = 600) -> str:
+    """
+    Truncates runtime error traces while preserving the tail where exception types
+    and relevant stack lines reside.
+    """
     if not error_msg:
         return ""
     if len(error_msg) <= max_chars:
         return error_msg
-    # Focus on the tail where traceback exception types usually lie
     truncated = error_msg[-max_chars:]
     return f"...[truncated]...\n{truncated}"
 
+
+def normalize_and_hash(code: str, language: str) -> str:
+    """
+    Produces a deterministic SHA-256 hash of normalized code to detect semantic duplicates.
+    - Python: canonicalized AST via ast.unparse(ast.parse(code)), eliminating formatting/comments.
+    - C++: collapses consecutive whitespace and strips leading/trailing space.
+    """
+    clean = code.strip()
+    if language.lower() in ("python", "py"):
+        try:
+            tree = ast.parse(clean)
+            canonical = ast.unparse(tree)
+        except Exception:
+            canonical = re.sub(r'\s+', ' ', clean)
+    else:
+        canonical = re.sub(r'\s+', ' ', clean)
+
+    return hashlib.sha256(canonical.encode('utf-8')).hexdigest()
+
+
 def estimate_required_complexity(problem_text: str) -> str:
     """
-    Estimates required time complexity from problem constraints based on
+    Estimates required asymptotic time complexity from problem constraints based on
     Antti Laaksonen's Competitive Programmer's Handbook heuristics.
     """
     if not problem_text:
@@ -77,18 +110,17 @@ def estimate_required_complexity(problem_text: str) -> str:
             found_values.append(10 ** int(match.group(1)))
 
     if not found_values:
-        return "O(n log n) assumed."
+        return "O(n log n) or O(n) assumed."
 
     n = max(found_values)
 
     if n <= 20:
-        return "O(2^n) or O(n!) - Suggest Complete Search or Backtracking."
+        return f"O(2^n) or O(n!) - Suggest Complete Search or Backtracking (N <= {n})."
     elif n <= 500:
-        return "O(n^3) - Suggest Floyd-Warshall or 3D DP."
+        return f"O(n^3) - Suggest Floyd-Warshall or 3D Dynamic Programming (N <= {n})."
     elif n <= 5000:
-        return "O(n^2) - Suggest 2D DP or Nested Loops."
+        return f"O(n^2) - Suggest 2D Dynamic Programming or Nested Loops (N <= {n})."
     elif n <= 10**5:
-        return "O(n log n) or O(n) - Suggest Segment Trees, Binary Search, or Greedy."
+        return f"O(n log n) or O(n) - Suggest Segment Trees, Binary Search, or Greedy (N <= {n})."
     else:
-        return "O(n log n) or O(n) - Suggest Segment Trees, Binary Search, or Greedy."
-
+        return f"O(n log n) or O(n) - Suggest Coordinate Compression, Segment Trees, or O(1)/O(log n) per query (N <= {n})."
