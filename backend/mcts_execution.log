@@ -117,3 +117,11 @@
 2026-11-04 22:39:59,539 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
 2026-11-04 22:40:30,954 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
 2026-11-04 22:40:45,581 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-11-04 23:00:30,872 - mcts - INFO - Received solve request for python with 1 test cases.
+2026-11-04 23:01:00,160 - mcts - INFO - Received solve request for python with 1 test cases.
+2026-11-04 23:01:35,316 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-11-04 23:01:49,786 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-11-04 23:02:02,819 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-11-04 23:02:22,518 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-11-04 23:02:34,510 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-11-04 23:03:01,727 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"

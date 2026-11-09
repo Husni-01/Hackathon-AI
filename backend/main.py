@@ -3,8 +3,12 @@ import asyncio
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
-from schemas import ExecutionRequest
-from mcts import run_mcts
+try:
+    from schemas import ExecutionRequest
+    from mcts import run_mcts
+except ImportError:
+    from backend.schemas import ExecutionRequest
+    from backend.mcts import run_mcts
 
 logging.basicConfig(
     filename='mcts_execution.log',
