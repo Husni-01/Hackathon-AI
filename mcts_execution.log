@@ -1,0 +1,5 @@
+2026-11-08 22:13:33,290 - mcts - INFO - Received solve request for python with 1 test cases.
+2026-11-08 22:15:50,779 - mcts - INFO - Received solve request for python with 1 test cases.
+2026-11-08 22:16:24,161 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-11-08 22:16:37,842 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-11-08 22:17:05,244 - httpx - INFO - HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
